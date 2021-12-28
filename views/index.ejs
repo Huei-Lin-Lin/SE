@@ -1,11 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <% include ./models/bs_css.ejs %>
   </head>
   <body>
-    <h1><%= title %></h1>
+    <!-- <% include ./navbar.ejs %>
+    <h1>Hi <%= username %></h1>
     <p>Welcome to <%= title %></p>
+    <% include ./models/bs_js.ejs %> -->
+
+    <% include ./navbar.ejs %>
+
+    <div class="container">
+      <div class="row">
+        <div id="showData" class="col-8 m-auto text-center" >
+          <!-- 顯示今日的 todo -->
+          準備要跨年了
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8 m-auto">
+          <div class="row">
+            <div class="col-6 text-center">
+              <a class="btn btn-dark w-75" href="/list" >顯示所有事情</a>
+            </div>
+            <div class="col-6 text-center">
+              <a class="btn btn-dark w-75" href="/add">新增事項</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% include ./models/bs_js.ejs %>
+    <script src="/javascripts/index.js"></script>
+
   </body>
 </html>

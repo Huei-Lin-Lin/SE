@@ -4,12 +4,24 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mysql = require('mysql');
+const session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var signUpRouter = require('./routes/signUp');
+var loginRouter = require('./routes/login');
+var logoutRouter = require('./routes/logout');
+var addRouter = require('./routes/add');
+var getRouter = require('./routes/api/get');
 
 var app = express();
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  // cookie: { secure: true }
+}))
 
 let db_config={
   database : 'todo',
@@ -48,6 +60,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/signUp', signUpRouter);
+app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
+app.use('/add', addRouter);
+app.use('/api/get', getRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
